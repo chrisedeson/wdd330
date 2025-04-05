@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/search.css">
     <script type="module" src="../js/common.js"></script>
     <script type="module" src="../js/search.js"></script>
     <title>Search - Skimmer</title>
@@ -21,7 +22,16 @@
 <body>
     <header id="main-header"></header>      
     <main>
-        
+        <h2>Search</h2>
+        <section class="search-section popular-recipes">
+            <div class="search-container">
+                <div class="search-wrapper">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" id="search-input" placeholder="Search for a recipe..." autocomplete="off">
+                </div>
+              </div>
+        </section>
+        <section id="results-container" class="recipe-cards"></section>
     </main>
     <footer id="main-footer"></footer>
 </body>
