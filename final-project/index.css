@@ -22,7 +22,7 @@ input:active, textarea:active, select:active, button:active {
     transform: scale(0.98);
 }
 
-/* Header */
+/* HEADER */
 header {
     padding: .3em .4em;
 }
@@ -107,6 +107,7 @@ header a {
     /* font-family: "Biryani", sans-serif; */
     font-family: "Sofia Sans Extra Condensed", sans-serif;
     letter-spacing: 1px;
+    padding-top: 1em;
 }
 
 .hero button, button {
@@ -241,7 +242,7 @@ section h2 {
     background-color: white;
     padding: .75em;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -302,57 +303,51 @@ section h2 {
     font-size: 1rem;
 }
 
-
-
-
-
+/* ABOUT US */
 .chef-note {
-    background: #fff;
+    position: relative;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
+    background: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    position: relative;
   }
   
-  /* ABOUT US heading */
-  .chef-note > p:first-of-type {
+.chef-note > p:first-of-type {
     font-size: 0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #555;
     margin-bottom: 0.5rem;
     text-align: center;
-  }
+}
   
-  /* Title */
-  .chef-note h2 {
+.chef-note h2 {
     font-size: 1.75rem;
     margin: 0.5rem 0 1.5rem;
     color: #222;
     text-align: center;
-  }
+}
   
-  /* Paragraph styling */
-  .chef-note > p:not(:first-of-type) {
+/* Paragraph styling */
+.chef-note > p:not(:first-of-type) {
     font-size: 1rem;
     line-height: 1.6;
     color: #444;
     text-align: center;
     margin-bottom: 1.5rem;
-  }
+}
   
-  /* Signature image, always aligned to the right */
-  .chef-note img {
+.chef-note img {
     display: block;
     max-width: 200px;
     width: 100%;
     height: auto;
     margin-left: auto;
     margin-top: 1.5rem;
-  }
+}
   
 
 /* FOOTER */
@@ -442,8 +437,8 @@ section h2 {
         box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
 
         /* Ensure the nav is on top of other content */
-            z-index: 999;
-            padding: 0.5rem 0;
+        z-index: 999;
+        padding: 0.5rem 0;
     }
 
     /* Class that will slide it up (i.e., show) */
@@ -461,6 +456,10 @@ section h2 {
         list-style: none;
     }
 
+    .bottom-nav .nav-label {
+        display: none;
+    }
+
     .bottom-nav ul li a {
         text-decoration: none;
         color: #333;
@@ -469,14 +468,14 @@ section h2 {
     }
 
     .bottom-nav ul li.active a {
-        color: #007bff; /* Active link color */
+        color: #3d7272;
     }
 
     .bottom-nav ul li:nth-child(2) {
-        margin-right: 20px; /* Adjust as needed */
-      }
+        margin-right: 20px;
+    }
     .bottom-nav ul li:nth-child(3) {
-        margin-left: 40px; /* Adjust as needed */
+        margin-left: 40px;
     }
 
     /* The center icon wrapper */
@@ -484,32 +483,67 @@ section h2 {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        /* Adjust 'top' if you want the icon to overlap more or less */
-        top: -30px; 
+        top: -30px;
     }
 
-    /* The icon circle (to hold your chef-hat icon) */
     .icon-circle {
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background-color: #007bff;
+        background-color: #1c3333;
         display: flex;
         align-items: center;
         justify-content: center;
-        /* Simple box-shadow for effect */
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        overflow: hidden;
     }
 
     .icon-circle img {
-        width: 40px;
-        height: 40px;
+        width: 28px;
+        height: 28px;
     }
-
+        
 }
 
 
+/* Larger screens: “promote” the NAVIGATION into header */
+@media (min-width: 601px) {
+    .bottom-nav i {
+      display: none;
+    }
+
+    .bottom-nav .nav-label {
+      display: inline-block;
+      font-family: "Golos Text", sans-serif;
+      font-size: 1rem;
+      color: #333;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+    }
+  
+    /* Layout the labels nicely */
+    .bottom-nav ul {
+      display: flex;
+      justify-content: end;
+      gap: 1.5rem;
+    }
+  
+    .bottom-nav li.active .nav-label {
+      color: #3d7272;
+      font-weight: 600;
+    }
+  
+    .bottom-nav .nav-label:hover {
+      color: #1c3333;
+      text-decoration: underline;
+    }
+
+  }
+
+
+
+
+
+/* LARGER SCREENS */
 @media(min-width: 800px) {
     * {
         font-size: 18px; /* 18px = 1rem */
@@ -524,9 +558,10 @@ section h2 {
     }
 
     .header__top #greeting {
+        margin-top: -1.5rem;
         font-size: 1em;
     }
-
+    
     .header__top, #user {
         padding-left: 30px;
     }
@@ -596,15 +631,15 @@ section h2 {
     .chef-note {
         max-width: 900px;
         padding: 3rem;
-      }
+    }
     
     .chef-note h2 {
         font-size: 2rem;
-      }
+    }
     
     .chef-note > p:not(:first-of-type) {
         font-size: 1.1rem;
-      }
+    }
 
     .footer {
         padding: 4rem 2rem;
@@ -625,9 +660,14 @@ section h2 {
 
 }
 
+
 @media(min-width: 1000px) {
     * {
         font-size: 20px; /* 18px = 1rem */
+    }
+
+    .bottom-nav ul {
+        justify-content: center;
     }
 
     .chef-note {
@@ -654,7 +694,6 @@ section h2 {
         font-size: 1.2rem;
     }
 }
-
 
 
 
