@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <script src="js/index.js" type="module"></script>
+    <!-- <script src="js/index.js" type="module"></script> -->
+    <script type="module" src="./js/common.js"></script>
+    <script type="module" src="./js/home.js"></script>
     <title>Skimmer</title>
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,60 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Biryani:wght@200;300;400;600;700;800;900&family=Golos+Text:wght@400..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link
+    <!-- PRO <link
         rel="stylesheet"
         href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
       > -->
 </head>
 <body>
-    <header>
-        <a href="index.html">
-          <h1 class="logo">SKI
-            <img src="images/icons/chef-hat.png" alt="chef hat icon">
-            MER
-          </h1>
-        </a>
-        <nav class="bottom-nav" id="bottomNav">
-            <ul>
-              <li class="active">
-                <a href="#">
-                  <i class="fa-solid fa-house"></i>
-                  <span class="nav-label">Home</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  <span class="nav-label">Explore</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-bell"></i>
-                  <span class="nav-label">Notifications</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-solid fa-user"></i>
-                  <span class="nav-label">Profile</span>
-                </a>
-              </li>
-            </ul>
-          
-            <div class="center-icon">
-                <div class="icon-circle">
-                    <a href=""><img src="images/icons/nav-logo.png" alt="Chef Icon"></a>
-                </div>
-            </div>
-        </nav>
-        <div class="header__top">
-            <p id="greeting"></p>
-            <i class="fa-solid fa-cart-shopping"></i>
-        </div>
-        <h2 id="user"></h2>
-    </header>
-      
+    <header id="main-header"></header>      
     <main>
         <div class="hero">
             <h2>BE THE CHEF OF YOUR KITCHEN 👩‍🍳</h2>
@@ -99,7 +54,7 @@
                 <a href="#" class="see-all-lnk">See All</a>
             </div>
             <div class="recipe-cards">
-                
+                <!-- Cards dynamically generated -->
             </div>
         </section>
         <article class="chef-note">
@@ -115,26 +70,6 @@
             <img src="./images/signature.png" alt="Signature">
         </article>
     </main>
-    <footer class="footer">
-        <div class="footer-logo">
-            <img src="./images/icons/chef-hat.png" alt="Website Logo">
-        </div>
-        <p class="footer-title">COMMUNITY</p>
-        <h2>Follow Us on Social Media</h2>
-        <p class="footer-text">
-            Join us on social media to share, learn, and grow together in our journey for eco-friendly and budget-friendly recipes. 
-            Your voice matters, and we’re excited to welcome you into our engaged community!
-        </p>
-        <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/christopher-edeson" class="social-link" title="LinkedIn" target="_blank">
-                <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/chrisedeson" class="social-link" title="Github" target="_blank">
-                <i class="fa-brands fa-github"></i> Github
-            </a>
-        </div>
-    </footer>
-  
-    
+    <footer id="main-footer"></footer>
 </body>
 </html>
