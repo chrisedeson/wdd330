@@ -1,27 +1,30 @@
-// File: js/FetchRecipe.mjs
 export async function fetchRecipes() {
-    return [
-        { name: "Asian white noodle with extra seafood", time: 25, link: "recipes/asian-noodle.html", calories: 10 },
-        { name: "Chicken Alfredo", time: 30, link: "recipes/chicken-alfredo.html", calories: 20 },
-        { name: "Beef Stir Fry", time: 20, link: "recipes/beef-stirfry.html", calories: 15 },
-        { name: "Vegan Tacos", time: 15, link: "recipes/vegan-tacos.html", calories: 12 },
-        { name: "Sushi Rolls", time: 40, link: "recipes/sushi-rolls.html", calories: 25 },
-        { name: "Pancakes", time: 10, link: "recipes/pancakes.html", calories: 20 },
-        { name: "Tomato Basil Pasta", time: 18, link: "recipes/tomato-pasta.html", calories: 18 },
-        { name: "Grilled Cheese Sandwich", time: 8, link: "recipes/grilled-cheese.html", calories: 15 },
-        { name: "Caesar Salad", time: 12, link: "recipes/caesar-salad.html", calories: 10 },
-        { name: "Chocolate Cake", time: 50, link: "recipes/chocolate-cake.html", calories: 35 }      
-    ];
-  }
-  
-  export async function fetchPopularRecipes() {
-    const recipes = await fetchRecipes();
-    // Shuffle the array using Fisher-Yates algorithm
-    for (let i = recipes.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [recipes[i], recipes[j]] = [recipes[j], recipes[i]];
+  try {
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    // Return exactly 4 popular recipes
-    return recipes.slice(0, 5);
+    const data = await response.json();
+    return data.meals.map(meal => ({
+      name: meal.strMeal,
+      // Generate a random stuffs here
+      time: Math.floor(Math.random() * 51) + 10,
+      link: meal.strSource || '#',
+      calories: Math.floor(Math.random() * 401) + 200,
+      image: meal.strMealThumb || 'images/fall-back-image.png',
+    }));
+  } catch (error) {
+    console.error("Failed to fetch recipes:", error);
+    return [];
   }
-  
+}
+
+export async function fetchPopularRecipes() {
+  // Shuffle the array and return the first 5 recipes as popular recipes.
+  const recipes = await fetchRecipes();
+  for (let i = recipes.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [recipes[i], recipes[j]] = [recipes[j], recipes[i]];
+  }
+  return recipes.slice(0, 5);
+}

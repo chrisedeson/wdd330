@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const cardsContainer = document.querySelector(".cards");
 
-    // Simulating an API call to fetch recipes
     const recipes = await fetchRecipes();
 
-    // Populate the cards dynamically
     recipes.forEach(recipe => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -15,7 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         cardsContainer.appendChild(card);
     });
 
-    // Clone first few cards for seamless scrolling
     const cards = document.querySelectorAll(".card");
     cards.forEach(card => {
         let clone = card.cloneNode(true);

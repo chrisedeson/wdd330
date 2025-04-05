@@ -4,7 +4,6 @@ export function displayGreeting() {
 
         // Get the current hour (0-23)
         const currentHour = new Date().getHours();
-
         // Determine the time of day and icon to use
         let greetingMessage = "";
         let icon = "";

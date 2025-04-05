@@ -166,7 +166,7 @@ section h2 {
     padding: 5em 1em 1.5em;
     margin: .3em;
     border-radius: 20px;
-    background-image: url('images/fall-back-image.png');
+    /* background-image: url('images/fall-back-image.png'); ? Fall-back image */
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -525,6 +525,10 @@ section h2 {
       display: flex;
       justify-content: end;
       gap: 1.5rem;
+    }
+
+    .bottom-nav ul li:first-child {
+        list-style: none;
     }
   
     .bottom-nav li.active .nav-label {
