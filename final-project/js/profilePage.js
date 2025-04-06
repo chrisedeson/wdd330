@@ -29,10 +29,22 @@ function displayUserProfile() {
 }
 
 function renderFavorites(container) {
-  container.innerHTML = ""; // Clear out any existing content
+  container.innerHTML = "";
   const favorites = getFavorites();
+  
   if (favorites.length === 0) {
-    container.innerHTML = `<p>No favorites yet. Start adding some!</p>`;
+    container.innerHTML = `
+      <div class="empty-state-container">
+        <div class="empty-state-message">
+          <h3 class="empty-state-title">Your Recipe Collection is Empty</h3>
+  
+          <a href="../index.html" class="cta-button">
+            <i class="fa-solid fa-utensils"></i>
+            Discover Recipes
+          </a>
+        </div>
+      </div>
+    `;
     return;
   }
 

@@ -1,10 +1,14 @@
 // home.js
-
 import { initCommon } from "./common.js";
 import { displayGreeting } from "./Greeting.mjs";
 import { createScrollableCards } from "./DynamicCardList.mjs";
 import { renderFeaturedCard, renderRecipeCard } from "./renderers.mjs";
 import { fetchRecipes, fetchPopularRecipes } from "./fetchRecipes.mjs";
+import { RecipeDialog } from "./RecipeDialog.mjs";
+import { showLoading, hideLoading } from './loading.js';
+
+// Initialize recipe dialog once
+const recipeDialog = new RecipeDialog();
 
 document.addEventListener("DOMContentLoaded", async () => {
   // 1) Load header/footer and set up nav
@@ -41,7 +45,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     rightBtn.addEventListener('click', () =>
       cardsContainer.scrollBy({ left: 300, behavior: 'smooth' })
     );
-  } else {
-    console.debug('Navigation arrows or cards container not found.');
   }
+
+  // 6) Add random recipe generator functionality
+  document.querySelector('.ctn-btn').addEventListener('click', async () => {
+    try {
+      showLoading();
+      const recipe = await recipeDialog.fetchRandomRecipe();
+      recipeDialog.show(recipe);
+    } catch (error) {
+      alert('Failed to load recipe. Please try again later.');
+      console.error('Recipe fetch error:', error);
+    } finally {
+      hideLoading();
+    }
+  });
 });

@@ -2,7 +2,6 @@
 
 .profile-main .recipe-cards {
   max-width: 1200px;
-    /* padding: 1.5em; */
 }
 
 .profile-header {
@@ -63,7 +62,54 @@
 } */
 
 
-  
+
+/* Empty State Styles */
+.empty-state-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-state-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #558386;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
+
+.cta-button:hover {
+  background-color: #476d70;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button i {
+  font-size: 1.1rem;
+}
+
+
   
   
   /* Responsive adjustments */
@@ -97,4 +143,4 @@
       font-size: 5rem;
     }
 
-  }
+}
