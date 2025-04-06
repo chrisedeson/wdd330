@@ -5,10 +5,17 @@ export async function createScrollableCards({ selector, fetcher, renderCard, inf
   
     const data = await fetcher();
   
-    data.forEach(item => {
-      const card = renderCard(item);
-      container.appendChild(card);
-    });
+    // Modify the card creation to include full recipe data
+data.forEach(recipe => {
+  const card = renderCard({
+    ...recipe,
+    // Ensure required properties
+    link: recipe.link || '#',
+    time: recipe.time || 'N/A',
+    calories: recipe.calories || 'N/A'
+  });
+  container.appendChild(card);
+});
   
     if (infiniteScroll) {
       const cards = container.querySelectorAll(':scope > *');

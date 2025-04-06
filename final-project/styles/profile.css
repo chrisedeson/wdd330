@@ -1,0 +1,100 @@
+/* Profile-specific styles only */
+
+.profile-main .recipe-cards {
+  max-width: 1200px;
+    /* padding: 1.5em; */
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  /* max-width: 400px; */
+  justify-content: space-between;
+  padding: 1em;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.profile #user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  font-size: 3.4rem;
+  color: #888;
+  background-color: #e8e8e8;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info h2 {
+  font-size: 1.4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.user-info p {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  color: #555;
+  font-size: .9rem;
+}
+
+.profile-header a {
+  font-size: 1.1rem;
+  color: red;
+}
+
+.profile-main .recipe-cards, .sub-header {
+  padding: .3em 1.5em;
+}
+
+/* Override grid layout for profile if needed */
+/* .profile-main .recipe-cards {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+} */
+
+
+  
+  
+  
+  /* Responsive adjustments */
+  @media (min-width: 600px) {
+    section.profile-header {
+      width: 100vw;
+      justify-content: center;
+      padding: 1.5em;
+      flex-direction: column;
+      margin: auto 0;
+    }
+    
+    .profile {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0, 0, 0, 0.1;
+    }
+
+    .profile-header a > i.fa-right-from-bracket::before {
+      content: "Sign out";
+      line-height: 2;
+      font-family: "Sofia Sans Semi Condensed", sans-serif;
+    }
+
+    .profile-header i.fa-right-from-bracket:hover {
+      text-decoration: underline;
+    }
+
+    .profile #user-avatar {
+      font-size: 5rem;
+    }
+
+  }

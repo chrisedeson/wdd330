@@ -1,3 +1,5 @@
+import { addFavorite, removeFavorite, isFavorite } from './utils.mjs';
+
 export function renderFeaturedCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -34,8 +36,21 @@ export function renderRecipeCard(recipe) {
     <button class="favourite-btn" aria-label="Favourite">♥</button>
   `;
   const favBtn = card.querySelector('.favourite-btn');
+  // Set initial state
+  if (isFavorite(recipe.name)) {
+    favBtn.classList.add('active');
+  }
+
+  // Add click handler
   favBtn.addEventListener('click', () => {
     favBtn.classList.toggle('active');
+    
+    if (favBtn.classList.contains('active')) {
+      addFavorite(recipe);
+    } else {
+      removeFavorite(recipe.name);
+    }
   });
+
   return card;
 }
