@@ -2,7 +2,6 @@ import { login, authGuard } from './auth.mjs';
 
 // Cache DOM elements properly
 const loginBtn = document.getElementById('loginBtn');
-const nameInputContainer = document.getElementById('nameInputContainer');
 const firstNameInput = document.getElementById('firstName'); // Get input directly
 const errorMessage = document.querySelector(".login-error-message");
 
@@ -13,7 +12,8 @@ loginBtn.addEventListener('click', (e) => {
     
     if (!inputVisible) {
         // Show input container
-        nameInputContainer.classList.add('visible');
+        firstNameInput.classList.add('visible');
+        errorMessage.textContent = "";
         inputVisible = true;
         loginBtn.textContent = "Submit";
         firstNameInput.focus(); // Use cached reference
