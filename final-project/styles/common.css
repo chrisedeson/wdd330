@@ -362,6 +362,11 @@ main h2, .subheader {
         font-size: 20px; /* 18px = 1rem */
     }
 
+    .logo img {
+        width: 57px;
+        height: 57px;
+    }
+
     .bottom-nav ul {
         justify-content: center;
     }

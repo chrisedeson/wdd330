@@ -1,77 +1,44 @@
-async function loadTemplate(path) {
+// Utility function to load templates
+const loadTemplate = async (path) => {
   try {
-    const response = await fetch(path);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch template from ${path}`);
-    }
-    
+    const response = await fetch(new URL(path, window.location.href));
     return await response.text();
   } catch (error) {
-    console.error(`Error loading template from ${path}:`, error);
-    throw error;
+    console.error(`Template load error (${path}):`, error);
+    return '<div class="template-error">Template failed to load</div>';
   }
-}
+};
 
-// Function to load and render the header and footer templates
-export async function loadHeaderFooter() {
+export const loadHeaderFooter = async () => {
   try {
-    const headerTemplate = await loadTemplate("../pages/partials/header.html");
-    const footerTemplate = await loadTemplate("../pages/partials/footer.html");
+    const [headerHTML, footerHTML] = await Promise.all([
+      loadTemplate("/pages/partials/header.html"),  // Add leading slash
+      loadTemplate("/pages/partials/footer.html")   // Add leading slash
+    ]);
 
-    const headerElement = document.querySelector("#main-header");
-    const footerElement = document.querySelector("#main-footer");
+    // Add existence checks
+    const headerElement = document.getElementById('main-header');
+    const footerElement = document.getElementById('main-footer');
+    
+    if (headerElement) headerElement.innerHTML = headerHTML;
+    if (footerElement) footerElement.innerHTML = footerHTML;
 
-    if (headerElement) {
-      headerElement.innerHTML = headerTemplate;
-    } else {
-      console.debug('Header element not found. The header might not be required on this page.');
-    }
-
-    if (footerElement) {
-      footerElement.innerHTML = footerTemplate;
-    } else {
-      console.debug('Footer element not found. The footer might not be required on this page.');
-    }
   } catch (error) {
-    console.error("Error loading header or footer:", error);
+    console.error("Header/Footer load failed:", error);
   }
-}
-
-// Function to manage the visibility of the bottom navigation based on scroll position
-export function setupBottomNavVisibility() {
-  let lastScrollY = window.scrollY;
+};
+// Bottom nav visibility controller
+export const setupBottomNavVisibility = () => {
   const bottomNav = document.getElementById('bottomNav');
+  if (!bottomNav) return;
 
-  if (!bottomNav) {
-    console.debug('Bottom navigation element not found. Skipping bottom nav visibility setup.');
-    return;
-  }
-
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-
-    // Ignore very small scroll differences (e.g., less than 5px)
-    if (Math.abs(currentScrollY - lastScrollY) < 5) {
-      return;
-    }
-
-    // If scrolling down, hide the nav; if scrolling up, show the nav
-    if (currentScrollY > lastScrollY) {
-      bottomNav.classList.remove('show');
-    } else {
-      bottomNav.classList.add('show');
-    }
-
-    lastScrollY = currentScrollY;
-  });
-}
-
-// Initialize everything by calling the necessary functions after the DOM content is loaded
-document.addEventListener('DOMContentLoaded', async function() {
-  // Ensure header and footer are loaded first
-  await loadHeaderFooter();
+  let lastScroll = window.scrollY;
   
-  // Then initialize the bottom navigation visibility
-  setupBottomNavVisibility();
-});
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (Math.abs(currentScroll - lastScroll) < 5) return;
+    
+    bottomNav.classList.toggle('show', currentScroll < lastScroll);
+    lastScroll = currentScroll;
+  });
+};

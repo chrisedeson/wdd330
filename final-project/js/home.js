@@ -13,6 +13,12 @@ const recipeDialog = new RecipeDialog();
 document.addEventListener("DOMContentLoaded", async () => {
   // 1) Load header/footer and set up nav
   await initCommon();
+  
+  // Only show greeting on homepage
+  if (window.location.pathname.endsWith('/index.html') || 
+     window.location.pathname === '/') {
+    displayGreeting(); // Only call once here
+  }
 
   // 2) Now that the header is in the DOM, show the greeting
   displayGreeting();
@@ -48,16 +54,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // 6) Add random recipe generator functionality
-  document.querySelector('.ctn-btn').addEventListener('click', async () => {
-    try {
-      showLoading();
-      const recipe = await recipeDialog.fetchRandomRecipe();
-      recipeDialog.show(recipe);
-    } catch (error) {
-      alert('Failed to load recipe. Please try again later.');
-      console.error('Recipe fetch error:', error);
-    } finally {
-      hideLoading();
-    }
+  Array.from(document.getElementsByClassName('ctn-btn')).forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        showLoading();
+        const recipe = await recipeDialog.fetchRandomRecipe();
+        recipeDialog.show(recipe);
+      } catch (error) {
+        alert('Failed to load recipe. Please try again later.');
+        console.error('Recipe fetch error:', error);
+      } finally {
+        hideLoading();
+      }
+    });
   });
+  
 });

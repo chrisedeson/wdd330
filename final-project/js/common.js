@@ -1,11 +1,13 @@
-// common.js
-
-import { loadHeaderFooter, setupBottomNavVisibility } from "./HeaderFooter.mjs";
+import { loadHeaderFooter, setupBottomNavVisibility } from './HeaderFooter.mjs';
 import { updateActiveNav } from "./utils.mjs";
+import { authGuard } from "./auth.mjs";
 
-export async function initCommon() {
+export const initCommon = async () => {
   await loadHeaderFooter();
-  // Wait for dynamic content, then update the active nav
-  updateActiveNav();
   setupBottomNavVisibility();
-}
+  updateActiveNav();
+  authGuard();
+
+  // When storing return URL
+sessionStorage.setItem('returnUrl', window.location.pathname);
+};

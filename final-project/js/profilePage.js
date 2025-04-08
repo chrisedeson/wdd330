@@ -1,19 +1,23 @@
-// File: js/profilePage.mjs
-
+// File: js/profilePage.js (update the whole file)
 import { initCommon } from "./common.js";
 import { getFavorites } from "./utils.mjs";
 import { renderRecipeCard } from "./renderers.mjs";
+import { getUser, logout } from "./auth.mjs"; // Add auth imports
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Initialize any common features (like nav, header, etc.)
   await initCommon();
-
-  // Display user info
   displayUserProfile();
-
-  // Display the user's favorites
-  const favoritesContainer = document.getElementById("favorites-container");
-  renderFavorites(favoritesContainer);
+  renderFavorites(document.getElementById("favorites-container"));
+  
+  // Add logout handler
+  const logoutLink = document.getElementById("logoutLink");
+  if (logoutLink) {
+    logoutLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      logout();
+      window.location.href = "/pages/login.html";
+    });
+  }
 });
 
 function displayUserProfile() {
@@ -21,11 +25,9 @@ function displayUserProfile() {
   const userName = document.getElementById("user-name");
   const userRole = document.getElementById("user-role");
 
-  // In a real app, you might fetch user info from an API or localStorage
-  // For now, we’ll just set some placeholder data
   userAvatar.innerHTML = `<i class="fa-solid fa-circle-user"></i>`;
-  userName.textContent = "Alena Sabyan";
-  userRole.textContent = "Recipe Developer";
+  userName.textContent = getUser(); // Use actual username from auth
+  userRole.textContent = "Premium Member"; // Update role text
 }
 
 function renderFavorites(container) {
