@@ -28,7 +28,7 @@ export function authGuard() {
         window.location.href = '/pages/login.html';
       }
       redirectTimer--;
-    }, 1000);
+    }, 500);
 
     window.addEventListener('beforeunload', () => clearInterval(countdown));
   }
