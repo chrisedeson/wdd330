@@ -23,7 +23,7 @@ export function renderRecipeCard(recipe) {
     <div class="img-container">
       <img src="${recipe.image}" alt="${recipe.name} image" width="300px">
     </div>
-    <h3><a href="${recipe.link}" class="recipe-link">${recipe.name}</a></h3>
+    <h3><a href="${recipe.link}" class="recipe-link" target="_blank" rel="noopener noreferrer">${recipe.name}</a></h3>
     <div class="recipe-details">
       <p>
         <i class="fa-regular fa-clock"></i> ${recipe.time} Min
