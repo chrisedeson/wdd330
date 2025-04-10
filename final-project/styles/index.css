@@ -12,7 +12,7 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  color: white;
+  color: var(--color-bg);
   z-index: 0;
 }
 
@@ -31,13 +31,13 @@
 }
 
 .hero h2 {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-size: 2em;
 }
 
 .hero p {
   /* font-family: "Biryani", sans-serif; */
-  font-family: "Sofia Sans Extra Condensed", sans-serif;
+  font-family: var(--font-subheading);
   letter-spacing: 1px;
   padding-top: 1em;
 }
@@ -48,12 +48,12 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 0.85rem;
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   margin-top: 1.9em;
   padding: 1em;
   border-radius: 50px;
   background-color: rgb(99, 148, 151);
-  color: white;
+  color: var(--color-bg);
   font-weight: 600;
   border: none;
 }
@@ -66,9 +66,9 @@ section {
 }
 
 section h2 {
-  font-family: "Golos Text", sans-serif;
+  font-family: var(--font-body);
   font-size: 1.25rem;
-  padding: 1em 0.3em; /*? consider making .3 padding-left general except the hero*/
+  padding: 1em 0.3em;
 }
 
 /* Container for horizontal scrolling */
@@ -88,7 +88,7 @@ section h2 {
 }
 
 .card {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   position: relative;
   display: flex;
   flex: 0 0 auto;
@@ -103,7 +103,7 @@ section h2 {
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  color: white;
+  color: var(--color-bg);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   scroll-snap-align: start;
@@ -140,8 +140,8 @@ section h2 {
 
 .category-header a,
 .popular-recipes-header a {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
-  color: #0a2533;
+  font-family: var(--font-heading);
+  color: var(--color-text);
 }
 
 .category-btns {
@@ -152,14 +152,14 @@ section h2 {
 .category button {
   width: 120px;
   height: 40px;
-  color: #0a2533;
+  color: var(--color-text);
   margin: 0;
-  background-color: #f1f5f5;
+  background-color: var(--color-bg-alt);
 }
 
 .category button:active {
-  color: white;
-  background-color: #3d7272;
+  color: var(--color-bg);
+  background-color: var(--color-primary-dark);
 }
 
 /* Popular Recipes */
@@ -174,7 +174,7 @@ section h2 {
 
 .recipe-card {
   position: relative;
-  background-color: white;
+  background-color: var(--color-bg);
   padding: 0.75em;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -214,7 +214,7 @@ section h2 {
 }
 
 .recipe-card h3 {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   padding: 0;
   margin: 0;
@@ -228,12 +228,12 @@ section h2 {
 }
 
 .recipe-card a {
-  color: #0a2533;
+  color: var(--color-text);
   text-decoration: none;
 }
 
 .recipe-details p {
-  font-family: "Sofia Sans Extra Condensed", sans-serif;
+  font-family: var(--font-subheading);
   font-size: 1.2rem;
   color: gray;
 }
@@ -245,11 +245,11 @@ section h2 {
 /* ABOUT US */
 .chef-note {
   position: relative;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-system);
   padding: 2rem;
   margin: 2rem auto;
   max-width: 800px;
-  background: #fff;
+  background: var(--color-bg);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -258,7 +258,7 @@ section h2 {
   font-size: 0.9rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #555;
+  color: var(--color-text-muted);
   margin-bottom: 0.5rem;
   text-align: center;
 }

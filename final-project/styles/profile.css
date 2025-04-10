@@ -42,8 +42,8 @@
 }
 
 .user-info p {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
-  color: #555;
+  font-family: var(--font-heading);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
@@ -89,12 +89,12 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  background-color: #558386;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
   border-radius: 25px;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
 }
 
 .cta-button:hover {
@@ -127,7 +127,7 @@
   .profile-header a > i.fa-right-from-bracket::before {
     content: "Sign out";
     line-height: 2;
-    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    font-family: var(--font-heading);
   }
 
   .profile-header i.fa-right-from-bracket:hover {

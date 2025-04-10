@@ -11,7 +11,7 @@
   align-self: end;
   background: none;
   border: none;
-  color: #3b8d3e;
+  color: var(--color-secondary);
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -23,7 +23,7 @@
 }
 
 .clear-btn:focus {
-  background-color: white;
+  background-color: var(--color-bg);
 }
 
 /* .notifications-list {
@@ -44,7 +44,7 @@
 } */
 
 /* .notification-item i {
-    color: #3b8d3e;
+    color: var(--color-secondary);
     font-size: 1.2rem;
 } */
 

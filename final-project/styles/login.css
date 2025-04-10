@@ -6,7 +6,7 @@ body {
   background-image: url("../images/bg-2.jpg");
   background-size: cover;
   background-position: center;
-  background-color: white;
+  background-color: var(--color-bg);
 }
 
 /* Black Hue Overlay */
@@ -34,14 +34,14 @@ body::after {
 }
 
 .login-container h1 {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.7rem;
   text-align: center;
-  color: white;
+  color: var(--color-bg);
 }
 
 .name-input input {
-  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-family: var(--font-heading);
   width: 100%;
   min-width: 100%;
   padding: 0.25em;
@@ -78,8 +78,8 @@ input:focus {
 button {
   width: 100%;
   min-width: 100%;
-  background-color: #3b8d3e;
-  color: white;
+  background-color: var(--color-secondary);
+  color: var(--color-bg);
   border: none;
   padding: 12px 30px;
   font-size: 1.1rem;
@@ -94,12 +94,12 @@ button:focus {
 }
 
 .login-button:hover {
-  background-color: #2f6932;
+  background-color: var(--color-secodary-dark);
   transform: translateY(-2px);
 }
 
 .login-error-message {
-  font-family: "Sofia Sans Extra Condensed", sans-serif;
+  font-family: var(--font-subheading);
   font-size: 1.5rem;
   font-weight: 700;
   color: rgb(255, 7, 7);

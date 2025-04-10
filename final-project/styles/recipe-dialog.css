@@ -22,7 +22,7 @@
 
 /* Dialog Container */
 .recipe-dialog {
-  background: #ffffff;
+  background: var(--color-bg);
   border-radius: 20px;
   width: 100%;
   max-width: 800px;
@@ -80,10 +80,10 @@
   height: 100%;
   background: linear-gradient(
     120deg,
-    #ececec 30%,
+    var(--color-gray) 30%,
     #f5f5f5 38%,
     #f5f5f5 40%,
-    #ececec 48%
+    var(--color-gray) 48%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
@@ -127,13 +127,13 @@
 
 .recipe-close-btn:hover {
   background: #e74c3c;
-  color: white;
+  color: var(--color-bg);
   transform: rotate(90deg) scale(1.1);
 }
 
 /* Title */
 .recipe-title {
-  font-family: "Golos Text", sans-serif;
+  font-family: var(--font-body);
   text-align: center;
   margin: 0.3em 0 -1.2em;
   font-size: 1.5rem;
@@ -145,7 +145,7 @@
 .tabs {
   display: flex;
   border-bottom: 2px solid #f0f0f0;
-  background: white;
+  background: var(--color-bg);
 }
 
 .tab-button {
@@ -183,7 +183,7 @@
 }
 
 .tab-button:focus {
-  background-color: white;
+  background-color: var(--color-bg);
 }
 
 /* Content Sections */

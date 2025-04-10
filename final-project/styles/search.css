@@ -39,7 +39,7 @@
 /* The search input itself */
 #search-input {
   width: 100%;
-  padding: 12px 20px 12px 42px; /* Extra left padding for icon */
+  padding: 12px 20px 12px 42px;
   font-size: 1rem;
   border: 2px solid #ccc;
   border-radius: 25px;
@@ -51,7 +51,7 @@
 /* Active + Focus states */
 #search-input:active,
 #search-input:focus {
-  border-color: #3d7272;
+  border-color: var(--color-primary-dark);
   outline: none;
   background-color: transparent;
   box-shadow: 0 0 0 3px rgba(61, 114, 114, 0.2);
@@ -73,8 +73,8 @@
 
 /* Spinner Styles */
 .spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3d7272;
+  border: 8px solid var(--color-gray-light);
+  border-top: 8px solid var(--color-primary-dark);
   border-radius: 50%;
   width: 60px;
   height: 60px;
