@@ -12,33 +12,32 @@ const loadTemplate = async (path) => {
 export const loadHeaderFooter = async () => {
   try {
     const [headerHTML, footerHTML] = await Promise.all([
-      loadTemplate("/pages/partials/header.html"),  // Add leading slash
-      loadTemplate("/pages/partials/footer.html")   // Add leading slash
+      loadTemplate("/pages/partials/header.html"),
+      loadTemplate("/pages/partials/footer.html"),
     ]);
 
     // Add existence checks
-    const headerElement = document.getElementById('main-header');
-    const footerElement = document.getElementById('main-footer');
-    
+    const headerElement = document.getElementById("main-header");
+    const footerElement = document.getElementById("main-footer");
+
     if (headerElement) headerElement.innerHTML = headerHTML;
     if (footerElement) footerElement.innerHTML = footerHTML;
-
   } catch (error) {
     console.error("Header/Footer load failed:", error);
   }
 };
 // Bottom nav visibility controller
 export const setupBottomNavVisibility = () => {
-  const bottomNav = document.getElementById('bottomNav');
+  const bottomNav = document.getElementById("bottomNav");
   if (!bottomNav) return;
 
   let lastScroll = window.scrollY;
-  
-  window.addEventListener('scroll', () => {
+
+  window.addEventListener("scroll", () => {
     const currentScroll = window.scrollY;
     if (Math.abs(currentScroll - lastScroll) < 5) return;
-    
-    bottomNav.classList.toggle('show', currentScroll < lastScroll);
+
+    bottomNav.classList.toggle("show", currentScroll < lastScroll);
     lastScroll = currentScroll;
   });
 };

@@ -1,10 +1,9 @@
-// loading.js
 let loadingElement = null;
 
 export function showLoading() {
   if (!loadingElement) {
-    loadingElement = document.createElement('div');
-    loadingElement.className = 'loading-spinner';
+    loadingElement = document.createElement("div");
+    loadingElement.className = "loading-spinner";
     loadingElement.style.cssText = `
       position: fixed;
       top: 50%;
@@ -18,8 +17,8 @@ export function showLoading() {
       border-radius: 50%;
       animation: spin 1s linear infinite;
     `;
-    
-    const style = document.createElement('style');
+
+    const style = document.createElement("style");
     style.textContent = `
       @keyframes spin {
         0% { transform: translate(-50%, -50%) rotate(0deg); }
@@ -28,7 +27,7 @@ export function showLoading() {
     `;
     document.head.appendChild(style);
   }
-  
+
   document.body.appendChild(loadingElement);
 }
 

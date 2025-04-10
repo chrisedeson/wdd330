@@ -44,7 +44,7 @@
 .user-info p {
   font-family: "Sofia Sans Semi Condensed", sans-serif;
   color: #555;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .profile-header a {
@@ -52,16 +52,15 @@
   color: red;
 }
 
-.profile-main .recipe-cards, .sub-header {
-  padding: .3em 1.5em;
+.profile-main .recipe-cards,
+.sub-header {
+  padding: 0.3em 1.5em;
 }
 
 /* Override grid layout for profile if needed */
 /* .profile-main .recipe-cards {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 } */
-
-
 
 /* Empty State Styles */
 .empty-state-container {
@@ -84,7 +83,6 @@
   margin-bottom: 1rem;
   font-weight: 600;
 }
-
 
 .cta-button {
   display: inline-flex;
@@ -109,38 +107,34 @@
   font-size: 1.1rem;
 }
 
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  section.profile-header {
+    width: 100vw;
+    justify-content: center;
+    padding: 1.5em;
+    flex-direction: column;
+    margin: auto 0;
+  }
 
-  
-  
-  /* Responsive adjustments */
-  @media (min-width: 600px) {
-    section.profile-header {
-      width: 100vw;
-      justify-content: center;
-      padding: 1.5em;
-      flex-direction: column;
-      margin: auto 0;
-    }
-    
-    .profile {
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0, 0, 0, 0.1;
-    }
+  .profile {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0, 0, 0, 0.1;
+  }
 
-    .profile-header a > i.fa-right-from-bracket::before {
-      content: "Sign out";
-      line-height: 2;
-      font-family: "Sofia Sans Semi Condensed", sans-serif;
-    }
+  .profile-header a > i.fa-right-from-bracket::before {
+    content: "Sign out";
+    line-height: 2;
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+  }
 
-    .profile-header i.fa-right-from-bracket:hover {
-      text-decoration: underline;
-    }
+  .profile-header i.fa-right-from-bracket:hover {
+    text-decoration: underline;
+  }
 
-    .profile #user-avatar {
-      font-size: 5rem;
-    }
-
+  .profile #user-avatar {
+    font-size: 5rem;
+  }
 }

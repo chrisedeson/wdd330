@@ -1,14 +1,13 @@
-// File: js/profilePage.js (update the whole file)
 import { initCommon } from "./common.js";
 import { getFavorites } from "./utils.mjs";
 import { renderRecipeCard } from "./renderers.mjs";
-import { getUser, logout } from "./auth.mjs"; // Add auth imports
+import { getUser, logout } from "./auth.mjs";
 
 document.addEventListener("DOMContentLoaded", async () => {
   await initCommon();
   displayUserProfile();
   renderFavorites(document.getElementById("favorites-container"));
-  
+
   // Add logout handler
   const logoutLink = document.getElementById("logoutLink");
   if (logoutLink) {
@@ -33,7 +32,7 @@ function displayUserProfile() {
 function renderFavorites(container) {
   container.innerHTML = "";
   const favorites = getFavorites();
-  
+
   if (favorites.length === 0) {
     container.innerHTML = `
       <div class="empty-state-container">
@@ -51,14 +50,14 @@ function renderFavorites(container) {
   }
 
   const fragment = document.createDocumentFragment();
-  
-  favorites.forEach(recipe => {
+
+  favorites.forEach((recipe) => {
     const card = renderRecipeCard({
       ...recipe,
       // Ensure required properties exist
-      image: recipe.image || 'images/fall-back-image.png',
-      time: recipe.time || 'N/A',
-      calories: recipe.calories || 'N/A'
+      image: recipe.image || "images/fall-back-image.png",
+      time: recipe.time || "N/A",
+      calories: recipe.calories || "N/A",
     });
     fragment.appendChild(card);
   });

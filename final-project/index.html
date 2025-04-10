@@ -1,78 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles/common.css">
-    <link rel="stylesheet" href="./styles/index.css">
-    <link rel="stylesheet" href="./styles/recipe-dialog.css">
+    <link rel="stylesheet" href="./styles/common.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="./styles/recipe-dialog.css" />
     <!-- Scripts -->
     <script type="module" src="./js/common.js"></script>
     <script type="module" src="./js/home.js"></script>
     <title>Skimmer</title>
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Biryani:wght@200;300;400;600;700;800;900&family=Golos+Text:wght@400..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Biryani:wght@200;300;400;600;700;800;900&family=Golos+Text:wght@400..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- PRO <link
         rel="stylesheet"
         href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
       > -->
-</head>
-<body>
+  </head>
+  <body>
     <header id="main-header"></header>
     <main>
-        <div class="hero">
-            <h2>BE THE CHEF OF YOUR KITCHEN 👩‍🍳</h2>
-            <p>From Breakfast to Dinner. We have you covered!</p>
-            <button class="ctn-btn">Start Cooking</button>
+      <div class="hero">
+        <h2>BE THE CHEF OF YOUR KITCHEN 👩‍🍳</h2>
+        <p>From Breakfast to Dinner. We have you covered!</p>
+        <button class="ctn-btn">Start Cooking</button>
+      </div>
+      <section class="features">
+        <h2>Featured</h2>
+        <div class="cards">
+          <!-- Cards dynamically generated -->
         </div>
-        <section class="features">
-            <h2>Featured</h2>
-            <div class="cards">
-                <!-- Cards dynamically generated -->
-            </div>
-            <div class="navigation-arrows">
-                <button class="scroll-btn left">&lt;</button>
-                <button class="scroll-btn right">&gt;</button>
-            </div>
-        </section>
-        <section class="category">
-            <div class="category-header">
-                <h2>Category</h2>
-                <a href="./pages/search.html" class="see-all-lnk">See All</a>
-            </div>
-            <div class="category-btns">
-                <button>Breakfast</button>
-                <button>Lunch</button>
-                <button>Dinner</button>
-            </div>
-        </section>
-        <section class="popular-recipes">
-            <div class="popular-recipes-header">
-                <h2>Popular Recipes</h2>
-                <a href="./pages/search.html" class="see-all-lnk">See All</a>
-            </div>
-            <div class="recipe-cards">
-                <!-- Cards dynamically generated -->
-            </div>
-        </section>
-        <article class="chef-note">
-            <p>ABOUT US</p>
-            <h2>Our Ambitions and Values</h2>
-            <p>Welcome to our humble food corner, where we take eating very seriously… but not ourselves. We firmly believe that good food shouldn’t be a luxury or a survival challenge. Got a tight budget but dreams of a five-star feast? No worries, we’ve got you covered.
-
-                Our mission? To help you cook delicious meals without breaking the bank or your spirit. Because yes, the planet is our home, and honestly, it deserves better than being treated like a messy kitchen after a midnight snack gone wrong. We focus on simple, accessible, and eco-friendly ingredients—because saving the world while enjoying good food is kind of a flex.
-                
-                So, join our community of food lovers who laugh as much as they cook. After all, life’s too short for bland meals and boring recipes.
-                
-                Bon appétit, and may the sauce be with you.</p>
-            <img src="./images/signature.png" alt="Signature">
-        </article>
+        <div class="navigation-arrows">
+          <button class="scroll-btn left">&lt;</button>
+          <button class="scroll-btn right">&gt;</button>
+        </div>
+      </section>
+      <section class="category">
+        <div class="category-header">
+          <h2>Category</h2>
+          <a href="./pages/search.html" class="see-all-lnk">See All</a>
+        </div>
+        <div class="category-btns">
+          <button>Breakfast</button>
+          <button>Lunch</button>
+          <button>Dinner</button>
+        </div>
+      </section>
+      <section class="popular-recipes">
+        <div class="popular-recipes-header">
+          <h2>Popular Recipes</h2>
+          <a href="./pages/search.html" class="see-all-lnk">See All</a>
+        </div>
+        <div class="recipe-cards">
+          <!-- Cards dynamically generated -->
+        </div>
+      </section>
+      <article class="chef-note">
+        <p>ABOUT US</p>
+        <h2>Our Ambitions and Values</h2>
+        <p>
+          Welcome to our humble food corner, where we take eating very
+          seriously… but not ourselves. We firmly believe that good food
+          shouldn’t be a luxury or a survival challenge. Got a tight budget but
+          dreams of a five-star feast? No worries, we’ve got you covered. Our
+          mission? To help you cook delicious meals without breaking the bank or
+          your spirit. Because yes, the planet is our home, and honestly, it
+          deserves better than being treated like a messy kitchen after a
+          midnight snack gone wrong. We focus on simple, accessible, and
+          eco-friendly ingredients—because saving the world while enjoying good
+          food is kind of a flex. So, join our community of food lovers who
+          laugh as much as they cook. After all, life’s too short for bland
+          meals and boring recipes. Bon appétit, and may the sauce be with you.
+        </p>
+        <img src="./images/signature.png" alt="Signature" />
+      </article>
     </main>
     <footer id="main-footer"></footer>
-</body>
+  </body>
 </html>

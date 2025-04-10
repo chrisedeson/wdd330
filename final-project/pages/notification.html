@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles -->
-    <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/notification.css">
+    <link rel="stylesheet" href="../styles/common.css" />
+    <link rel="stylesheet" href="../styles/notification.css" />
     <!-- Scripts -->
     <script type="module" src="../js/common.js"></script>
     <script type="module" src="../js/notificationPage.js"></script>
     <title>Search - Skimmer</title>
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Biryani:wght@200;300;400;600;700;800;900&family=Golos+Text:wght@400..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Biryani:wght@200;300;400;600;700;800;900&family=Golos+Text:wght@400..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <header id="main-header"></header>      
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header id="main-header"></header>
     <main>
-        <h2>Activity Log</h2>
-        <section class="notifications-section">
-            <button class="clear-btn">Mark all as read</button>
-            <ul class="notifications-list">
-                <!-- Notification items will be dynamically inserted here -->
-            </ul>
-            
-            <div class="empty-state">
-                <i class="fa-regular fa-bell-slash"></i>
-                <p>No notifications yet</p>
-            </div>
-        </section>
+      <h2>Activity Log</h2>
+      <section class="notifications-section">
+        <button class="clear-btn">Mark all as read</button>
+        <ul class="notifications-list">
+          <!-- Notification items will be dynamically inserted here -->
+        </ul>
+
+        <div class="empty-state">
+          <i class="fa-regular fa-bell-slash"></i>
+          <p>No notifications yet</p>
+        </div>
+      </section>
     </main>
     <footer id="main-footer"></footer>
-</body>
+  </body>
 </html>

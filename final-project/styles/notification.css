@@ -1,29 +1,29 @@
 /* Notifications Section */
 .notifications-section {
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 .clear-btn {
-    align-self: end;
-    background: none;
-    border: none;
-    color: #3b8d3e;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  align-self: end;
+  background: none;
+  border: none;
+  color: #3b8d3e;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .clear-btn:hover {
-    opacity: 0.8;
-    text-decoration: underline;
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .clear-btn:focus {
-    background-color: white;
+  background-color: white;
 }
 
 /* .notifications-list {
@@ -49,23 +49,23 @@
 } */
 
 .empty-state {
-    text-align: center;
-    padding: 4rem 0;
-    color: #666;
+  text-align: center;
+  padding: 4rem 0;
+  color: #666;
 }
 
 .empty-state i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
 }
 
 @media (max-width: 768px) {
-    .notifications-section {
-        padding: 0 0.5rem;
-    }
-    
-    /* .notification-item {
+  .notifications-section {
+    padding: 0 0.5rem;
+  }
+
+  /* .notification-item {
         padding: 0.75rem;
         font-size: 0.9rem;
     } */

@@ -1,4 +1,3 @@
-// js/auth.mjs
 export const USER_KEY = 'skimmerUser';
 
 export function getUser() {

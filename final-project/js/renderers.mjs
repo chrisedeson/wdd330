@@ -1,11 +1,11 @@
-import { addFavorite, removeFavorite, isFavorite } from './utils.mjs';
+import { addFavorite, removeFavorite, isFavorite } from "./utils.mjs";
 
 export function renderFeaturedCard(recipe) {
-  const card = document.createElement('div');
-  card.classList.add('card');
+  const card = document.createElement("div");
+  card.classList.add("card");
 
   // Use recipe.image or fallback image if missing
-  const imageUrl = recipe.image || 'images/fall-back-image.png';
+  const imageUrl = recipe.image || "images/fall-back-image.png";
   card.style.backgroundImage = `url(${imageUrl})`;
 
   card.innerHTML = `
@@ -17,8 +17,8 @@ export function renderFeaturedCard(recipe) {
 }
 
 export function renderRecipeCard(recipe) {
-  const card = document.createElement('div');
-  card.classList.add('recipe-card');
+  const card = document.createElement("div");
+  card.classList.add("recipe-card");
   card.innerHTML = `
     <div class="img-container">
       <img src="${recipe.image}" alt="${recipe.name} image" width="300px">
@@ -35,17 +35,17 @@ export function renderRecipeCard(recipe) {
     </div>
     <button class="favourite-btn" aria-label="Favourite">♥</button>
   `;
-  const favBtn = card.querySelector('.favourite-btn');
+  const favBtn = card.querySelector(".favourite-btn");
   // Set initial state
   if (isFavorite(recipe.name)) {
-    favBtn.classList.add('active');
+    favBtn.classList.add("active");
   }
 
   // Add click handler
-  favBtn.addEventListener('click', () => {
-    favBtn.classList.toggle('active');
-    
-    if (favBtn.classList.contains('active')) {
+  favBtn.addEventListener("click", () => {
+    favBtn.classList.toggle("active");
+
+    if (favBtn.classList.contains("active")) {
       addFavorite(recipe);
     } else {
       removeFavorite(recipe.name);

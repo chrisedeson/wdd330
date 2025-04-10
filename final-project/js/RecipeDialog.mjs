@@ -1,16 +1,16 @@
 export class RecipeDialog {
   constructor() {
-    this.API_URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    this.API_URL = "https://www.themealdb.com/api/json/v1/1/random.php";
     this.initDialog();
     this.injectStyles();
   }
 
   initDialog() {
-    this.dialogOverlay = document.createElement('div');
-    this.dialogOverlay.className = 'recipe-dialog-overlay';
+    this.dialogOverlay = document.createElement("div");
+    this.dialogOverlay.className = "recipe-dialog-overlay";
 
-    this.dialogContent = document.createElement('div');
-    this.dialogContent.className = 'recipe-dialog';
+    this.dialogContent = document.createElement("div");
+    this.dialogContent.className = "recipe-dialog";
     this.dialogContent.innerHTML = `
       <div class="dialog-scroll-container">
         <div class="image-container">
@@ -41,40 +41,41 @@ export class RecipeDialog {
     this.setupEventListeners();
   }
 
-    
-
   injectStyles() {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '../styles/RecipeDialog.css';
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "../styles/RecipeDialog.css";
     document.head.appendChild(link);
   }
 
   setupEventListeners() {
-    this.dialogOverlay.addEventListener('click', (e) => {
-      if (e.target === this.dialogOverlay || e.target.closest('.recipe-close-btn')) {
+    this.dialogOverlay.addEventListener("click", (e) => {
+      if (
+        e.target === this.dialogOverlay ||
+        e.target.closest(".recipe-close-btn")
+      ) {
         this.hide();
       }
     });
-    
-    const tabs = this.dialogContent.querySelectorAll('.tab-button');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
+
+    const tabs = this.dialogContent.querySelectorAll(".tab-button");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
         const tabName = tab.dataset.tab;
         this.switchTab(tabName);
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
       });
     });
   }
 
   switchTab(tabName) {
-    const contents = this.dialogContent.querySelectorAll('.recipe-section');
-    contents.forEach(content => {
-      content.classList.remove('active');
+    const contents = this.dialogContent.querySelectorAll(".recipe-section");
+    contents.forEach((content) => {
+      content.classList.remove("active");
       if (content.classList.contains(tabName)) {
-        content.classList.add('active');
-        if (tabName === 'ingredients') {
+        content.classList.add("active");
+        if (tabName === "ingredients") {
           this.resetIngredientsAnimation();
         } else {
           this.resetInstructionsAnimation();
@@ -84,63 +85,77 @@ export class RecipeDialog {
   }
 
   resetIngredientsAnimation() {
-    const items = this.dialogContent.querySelectorAll('.ingredient-item');
-    items.forEach(item => {
-      item.style.animation = 'none';
+    const items = this.dialogContent.querySelectorAll(".ingredient-item");
+    items.forEach((item) => {
+      item.style.animation = "none";
       void item.offsetWidth; // Trigger reflow
-      item.style.animation = 'ingredientAppear 0.3s ease-out forwards';
+      item.style.animation = "ingredientAppear 0.3s ease-out forwards";
     });
   }
 
   resetInstructionsAnimation() {
-    const instructions = this.dialogContent.querySelector('.instructions-scroll');
-    instructions.style.animation = 'none';
+    const instructions = this.dialogContent.querySelector(
+      ".instructions-scroll"
+    );
+    instructions.style.animation = "none";
     void instructions.offsetWidth;
-    instructions.style.animation = 'contentFade 0.5s ease-out forwards';
+    instructions.style.animation = "contentFade 0.5s ease-out forwards";
   }
 
   show(recipe) {
     this.populateDialog(recipe);
-    this.dialogOverlay.style.display = 'flex';
+    this.dialogOverlay.style.display = "flex";
     setTimeout(() => {
-      this.dialogOverlay.classList.add('active');
-      this.dialogContent.classList.add('active');
+      this.dialogOverlay.classList.add("active");
+      this.dialogContent.classList.add("active");
     }, 10);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   }
 
   hide() {
-    this.dialogContent.classList.remove('active');
-    this.dialogOverlay.classList.remove('active');
+    this.dialogContent.classList.remove("active");
+    this.dialogOverlay.classList.remove("active");
     setTimeout(() => {
-      this.dialogOverlay.style.display = 'none';
-      document.body.style.overflow = '';
+      this.dialogOverlay.style.display = "none";
+      document.body.style.overflow = "";
     }, 400);
   }
 
   populateDialog(meal) {
     const ingredients = this.extractIngredients(meal);
-    
-    this.dialogContent.querySelector('.recipe-title').textContent = meal.strMeal;
-    const img = this.dialogContent.querySelector('.recipe-image');
-    img.src = meal.strMealThumb || 'images/fall-back-image.png';
-    
+
+    this.dialogContent.querySelector(".recipe-title").textContent =
+      meal.strMeal;
+    const img = this.dialogContent.querySelector(".recipe-image");
+    img.src = meal.strMealThumb || "images/fall-back-image.png";
+
     img.onload = () => {
-      img.style.opacity = '1';
-      this.dialogContent.querySelector('.image-loader').remove();
+      img.style.opacity = "1";
+      this.dialogContent.querySelector(".image-loader").remove();
     };
-    
-    const ingredientsList = this.dialogContent.querySelector('.recipe-ingredients');
-    ingredientsList.innerHTML = ingredients.map(ing => `
+
+    const ingredientsList = this.dialogContent.querySelector(
+      ".recipe-ingredients"
+    );
+    ingredientsList.innerHTML = ingredients
+      .map(
+        (ing) => `
       <li class="ingredient-item">
         <span>${ing.ingredient}</span>
         <span class="ingredient-measure">${ing.measure}</span>
       </li>
-    `).join('');
-    
-    const instructions = this.dialogContent.querySelector('.recipe-instructions');
-    instructions.textContent = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "\n");
-    
+    `
+      )
+      .join("");
+
+    const instructions = this.dialogContent.querySelector(
+      ".recipe-instructions"
+    );
+    instructions.textContent = meal.strInstructions.replace(
+      /(\r\n|\n|\r)/gm,
+      "\n"
+    );
+
     setTimeout(() => {
       this.animateIngredients();
       this.animateInstructions();
@@ -148,15 +163,19 @@ export class RecipeDialog {
   }
 
   animateIngredients() {
-    const items = this.dialogContent.querySelectorAll('.ingredient-item');
+    const items = this.dialogContent.querySelectorAll(".ingredient-item");
     items.forEach((item, index) => {
-      item.style.animation = `ingredientAppear 0.3s ease-out ${index * 0.05}s forwards`;
+      item.style.animation = `ingredientAppear 0.3s ease-out ${
+        index * 0.05
+      }s forwards`;
     });
   }
 
   animateInstructions() {
-    const instructions = this.dialogContent.querySelector('.instructions-scroll');
-    instructions.style.animation = 'contentFade 0.5s ease-out forwards';
+    const instructions = this.dialogContent.querySelector(
+      ".instructions-scroll"
+    );
+    instructions.style.animation = "contentFade 0.5s ease-out forwards";
   }
 
   extractIngredients(meal) {
@@ -167,7 +186,7 @@ export class RecipeDialog {
       if (ingredient && ingredient.trim()) {
         ingredients.push({
           ingredient: ingredient.trim(),
-          measure: (measure || '').trim()
+          measure: (measure || "").trim(),
         });
       }
     }
@@ -177,11 +196,11 @@ export class RecipeDialog {
   async fetchRandomRecipe() {
     try {
       const response = await fetch(this.API_URL);
-      if (!response.ok) throw new Error('Failed to fetch recipe');
+      if (!response.ok) throw new Error("Failed to fetch recipe");
       const data = await response.json();
       return data.meals[0];
     } catch (error) {
-      console.error('Recipe fetch error:', error);
+      console.error("Recipe fetch error:", error);
       throw error;
     }
   }
