@@ -8,43 +8,32 @@ export class RecipeDialog {
   initDialog() {
     this.dialogOverlay = document.createElement('div');
     this.dialogOverlay.className = 'recipe-dialog-overlay';
-  
+
     this.dialogContent = document.createElement('div');
     this.dialogContent.className = 'recipe-dialog';
     this.dialogContent.innerHTML = `
-    <div class="image-container">
-      <img class="recipe-image" src="" alt="Recipe image">
-    </div>
-    <button class="recipe-close-btn" id="recipeCloseBtn" aria-label="Close">&times;</button>
-    <div class="recipe-content">
-      <h2 class="recipe-title"></h2>
-      <div class="recipe-content">
-      <!-- Desktop Layout -->
-      <div class="recipe-section">
-        <h3>Ingredients</h3>
-        <ul class="recipe-ingredients"></ul>
+      <div class="dialog-scroll-container">
+        <div class="image-container">
+          <div class="image-loader"></div>
+          <img class="recipe-image" src="" alt="Recipe image">
+          <button class="recipe-close-btn">&times;</button>
+        </div>
+        <h3 class="recipe-title"></h3>
+        <div class="tabs">
+          <button class="tab-button active" data-tab="ingredients">Ingredients</button>
+          <button class="tab-button" data-tab="instructions">Instructions</button>
+        </div>
+        <div class="tab-content">
+          <div class="recipe-section ingredients active">
+            <ul class="recipe-ingredients"></ul>
+          </div>
+          <div class="recipe-section instructions">
+            <div class="instructions-scroll">
+              <p class="recipe-instructions"></p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="recipe-section">
-        <h3>Instructions</h3>
-        <p class="recipe-instructions"></p>
-      </div>
-
-      <!-- Mobile Tabs -->
-      <div class="mobile-tabs">
-        <button class="mobile-tab active" data-content="mobile-ingredients">Ingredients</button>
-        <button class="mobile-tab" data-content="mobile-instructions">Instructions</button>
-      </div>
-      
-      <!-- Mobile Content -->
-      <div class="mobile-ingredients mobile-content active">
-        <h3>Ingredients</h3>
-        <ul class="mobile-recipe-ingredients"></ul>
-      </div>
-      <div class="mobile-instructions mobile-content">
-        <h3>Instructions</h3>
-        <p class="mobile-recipe-instructions"></p>
-      </div>
-    </div>
     `;
 
     this.dialogOverlay.appendChild(this.dialogContent);
@@ -52,10 +41,12 @@ export class RecipeDialog {
     this.setupEventListeners();
   }
 
+    
+
   injectStyles() {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '../styles/recipe-dialog.css';
+    link.href = '../styles/RecipeDialog.css';
     document.head.appendChild(link);
   }
 
@@ -65,71 +56,107 @@ export class RecipeDialog {
         this.hide();
       }
     });
-  }
-
-  setupTabs() {
-    const tabs = this.dialogContent.querySelectorAll('.mobile-tab');
-    const contents = this.dialogContent.querySelectorAll('.mobile-content');
     
+    const tabs = this.dialogContent.querySelectorAll('.tab-button');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        // Remove active states
+        const tabName = tab.dataset.tab;
+        this.switchTab(tabName);
         tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
-        
-        // Activate clicked tab and corresponding content
-        const target = tab.dataset.content;
         tab.classList.add('active');
-        this.dialogContent.querySelector(`.${target}`).classList.add('active');
       });
     });
+  }
+
+  switchTab(tabName) {
+    const contents = this.dialogContent.querySelectorAll('.recipe-section');
+    contents.forEach(content => {
+      content.classList.remove('active');
+      if (content.classList.contains(tabName)) {
+        content.classList.add('active');
+        if (tabName === 'ingredients') {
+          this.resetIngredientsAnimation();
+        } else {
+          this.resetInstructionsAnimation();
+        }
+      }
+    });
+  }
+
+  resetIngredientsAnimation() {
+    const items = this.dialogContent.querySelectorAll('.ingredient-item');
+    items.forEach(item => {
+      item.style.animation = 'none';
+      void item.offsetWidth; // Trigger reflow
+      item.style.animation = 'ingredientAppear 0.3s ease-out forwards';
+    });
+  }
+
+  resetInstructionsAnimation() {
+    const instructions = this.dialogContent.querySelector('.instructions-scroll');
+    instructions.style.animation = 'none';
+    void instructions.offsetWidth;
+    instructions.style.animation = 'contentFade 0.5s ease-out forwards';
   }
 
   show(recipe) {
     this.populateDialog(recipe);
     this.dialogOverlay.style.display = 'flex';
-    setTimeout(() => this.dialogContent.classList.add('active'), 10);
+    setTimeout(() => {
+      this.dialogOverlay.classList.add('active');
+      this.dialogContent.classList.add('active');
+    }, 10);
     document.body.style.overflow = 'hidden';
-    this.setupTabs();
   }
 
   hide() {
     this.dialogContent.classList.remove('active');
+    this.dialogOverlay.classList.remove('active');
     setTimeout(() => {
       this.dialogOverlay.style.display = 'none';
       document.body.style.overflow = '';
-    }, 300);
+    }, 400);
   }
 
   populateDialog(meal) {
     const ingredients = this.extractIngredients(meal);
     
-    // Desktop Content
     this.dialogContent.querySelector('.recipe-title').textContent = meal.strMeal;
-    this.dialogContent.querySelector('.recipe-image').src = meal.strMealThumb || 'images/fall-back-image.png';
+    const img = this.dialogContent.querySelector('.recipe-image');
+    img.src = meal.strMealThumb || 'images/fall-back-image.png';
+    
+    img.onload = () => {
+      img.style.opacity = '1';
+      this.dialogContent.querySelector('.image-loader').remove();
+    };
     
     const ingredientsList = this.dialogContent.querySelector('.recipe-ingredients');
     ingredientsList.innerHTML = ingredients.map(ing => `
-      <li>
+      <li class="ingredient-item">
         <span>${ing.ingredient}</span>
         <span class="ingredient-measure">${ing.measure}</span>
       </li>
     `).join('');
     
-    this.dialogContent.querySelector('.recipe-instructions').textContent = 
-      meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "\n");
+    const instructions = this.dialogContent.querySelector('.recipe-instructions');
+    instructions.textContent = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "\n");
+    
+    setTimeout(() => {
+      this.animateIngredients();
+      this.animateInstructions();
+    }, 300);
+  }
 
-    // Mobile Content
-    const mobileIngredients = this.dialogContent.querySelector('.mobile-recipe-ingredients');
-    mobileIngredients.innerHTML = ingredients.map(ing => `
-      <li>
-        <span>${ing.ingredient}</span>
-        <span class="ingredient-measure">${ing.measure}</span>
-      </li>
-    `).join('');
+  animateIngredients() {
+    const items = this.dialogContent.querySelectorAll('.ingredient-item');
+    items.forEach((item, index) => {
+      item.style.animation = `ingredientAppear 0.3s ease-out ${index * 0.05}s forwards`;
+    });
+  }
 
-    const mobileInstructions = this.dialogContent.querySelector('.mobile-recipe-instructions');
-    mobileInstructions.textContent = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "\n");
+  animateInstructions() {
+    const instructions = this.dialogContent.querySelector('.instructions-scroll');
+    instructions.style.animation = 'contentFade 0.5s ease-out forwards';
   }
 
   extractIngredients(meal) {
