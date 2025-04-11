@@ -44,11 +44,12 @@ export class RecipeDialog {
   injectStyles() {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/styles/RecipeDialog.css";
+    link.href = "/styles/recipe-dialog.css";
     document.head.appendChild(link);
   }
 
   setupEventListeners() {
+    // Close on overlay click or close‑button click
     this.dialogOverlay.addEventListener("click", (e) => {
       if (
         e.target === this.dialogOverlay ||
@@ -58,6 +59,7 @@ export class RecipeDialog {
       }
     });
 
+    // Tab switching
     const tabs = this.dialogContent.querySelectorAll(".tab-button");
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
@@ -70,16 +72,12 @@ export class RecipeDialog {
   }
 
   switchTab(tabName) {
-    const contents = this.dialogContent.querySelectorAll(".recipe-section");
-    contents.forEach((content) => {
-      content.classList.remove("active");
-      if (content.classList.contains(tabName)) {
-        content.classList.add("active");
-        if (tabName === "ingredients") {
-          this.resetIngredientsAnimation();
-        } else {
-          this.resetInstructionsAnimation();
-        }
+    const sections = this.dialogContent.querySelectorAll(".recipe-section");
+    sections.forEach((sec) => {
+      sec.classList.toggle("active", sec.classList.contains(tabName));
+      if (sec.classList.contains(tabName)) {
+        if (tabName === "ingredients") this.resetIngredientsAnimation();
+        else this.resetInstructionsAnimation();
       }
     });
   }
@@ -88,23 +86,24 @@ export class RecipeDialog {
     const items = this.dialogContent.querySelectorAll(".ingredient-item");
     items.forEach((item) => {
       item.style.animation = "none";
-      void item.offsetWidth; // Trigger reflow
+      void item.offsetWidth;
       item.style.animation = "ingredientAppear 0.3s ease-out forwards";
     });
   }
 
   resetInstructionsAnimation() {
-    const instructions = this.dialogContent.querySelector(
-      ".instructions-scroll"
-    );
-    instructions.style.animation = "none";
-    void instructions.offsetWidth;
-    instructions.style.animation = "contentFade 0.5s ease-out forwards";
+    const inst = this.dialogContent.querySelector(".instructions-scroll");
+    if (inst) {
+      inst.style.animation = "none";
+      void inst.offsetWidth;
+      inst.style.animation = "contentFade 0.5s ease-out forwards";
+    }
   }
 
   show(recipe) {
     this.populateDialog(recipe);
     this.dialogOverlay.style.display = "flex";
+    // allow CSS transitions to kick in
     setTimeout(() => {
       this.dialogOverlay.classList.add("active");
       this.dialogContent.classList.add("active");
@@ -124,16 +123,21 @@ export class RecipeDialog {
   populateDialog(meal) {
     const ingredients = this.extractIngredients(meal);
 
+    // Title
     this.dialogContent.querySelector(".recipe-title").textContent =
       meal.strMeal;
-    const img = this.dialogContent.querySelector(".recipe-image");
-    img.src = meal.strMealThumb || "images/fall-back-image.png";
 
+    // Image + loader
+    const img = this.dialogContent.querySelector(".recipe-image");
+    img.style.opacity = "0";
+    img.src = meal.strMealThumb || "images/fall-back-image.png";
     img.onload = () => {
       img.style.opacity = "1";
-      this.dialogContent.querySelector(".image-loader").remove();
+      const loader = this.dialogContent.querySelector(".image-loader");
+      if (loader) loader.remove();
     };
 
+    // Ingredients list
     const ingredientsList = this.dialogContent.querySelector(
       ".recipe-ingredients"
     );
@@ -148,14 +152,16 @@ export class RecipeDialog {
       )
       .join("");
 
-    const instructions = this.dialogContent.querySelector(
+    // Instructions
+    const instructionsElem = this.dialogContent.querySelector(
       ".recipe-instructions"
     );
-    instructions.textContent = meal.strInstructions.replace(
+    instructionsElem.textContent = meal.strInstructions.replace(
       /(\r\n|\n|\r)/gm,
       "\n"
     );
 
+    // Animate both sections after a short delay
     setTimeout(() => {
       this.animateIngredients();
       this.animateInstructions();
@@ -164,44 +170,39 @@ export class RecipeDialog {
 
   animateIngredients() {
     const items = this.dialogContent.querySelectorAll(".ingredient-item");
-    items.forEach((item, index) => {
+    items.forEach((item, idx) => {
       item.style.animation = `ingredientAppear 0.3s ease-out ${
-        index * 0.05
+        idx * 0.05
       }s forwards`;
     });
   }
 
   animateInstructions() {
-    const instructions = this.dialogContent.querySelector(
-      ".instructions-scroll"
-    );
-    instructions.style.animation = "contentFade 0.5s ease-out forwards";
+    const inst = this.dialogContent.querySelector(".instructions-scroll");
+    if (inst) {
+      inst.style.animation = "contentFade 0.5s ease-out forwards";
+    }
   }
 
   extractIngredients(meal) {
-    const ingredients = [];
+    const list = [];
     for (let i = 1; i <= 20; i++) {
       const ingredient = meal[`strIngredient${i}`];
       const measure = meal[`strMeasure${i}`];
       if (ingredient && ingredient.trim()) {
-        ingredients.push({
+        list.push({
           ingredient: ingredient.trim(),
           measure: (measure || "").trim(),
         });
       }
     }
-    return ingredients;
+    return list;
   }
 
   async fetchRandomRecipe() {
-    try {
-      const response = await fetch(this.API_URL);
-      if (!response.ok) throw new Error("Failed to fetch recipe");
-      const data = await response.json();
-      return data.meals[0];
-    } catch (error) {
-      console.error("Recipe fetch error:", error);
-      throw error;
-    }
+    const res = await fetch(this.API_URL);
+    if (!res.ok) throw new Error("Failed to fetch recipe");
+    const data = await res.json();
+    return data.meals[0];
   }
 }
