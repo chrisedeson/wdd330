@@ -2,7 +2,7 @@ import { initCommon } from "./common.js";
 import { displayGreeting } from "./Greeting.mjs";
 import { createScrollableCards } from "./DynamicCardList.mjs";
 import { renderFeaturedCard, renderRecipeCard } from "./renderers.mjs";
-import { fetchRecipes, fetchPopularRecipes } from "./fetchRecipes.mjs";
+import { fetchRecipes, fetchPopularRecipes } from "./FetchRecipes.mjs";
 import { RecipeDialog } from "./RecipeDialog.mjs";
 import { showLoading, hideLoading } from "./loading.js";
 
