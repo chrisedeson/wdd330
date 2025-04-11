@@ -3,7 +3,6 @@ import { getUser } from "./auth.mjs";
 export function displayGreeting() {
   const greeting = document.getElementById("greeting");
   const user = document.getElementById("user");
-  user.textContent = getUser();
 
   if (!greeting || !user) return;
 
