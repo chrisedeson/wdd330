@@ -12,8 +12,8 @@ const loadTemplate = async (path) => {
 export const loadHeaderFooter = async () => {
   try {
     const [headerHTML, footerHTML] = await Promise.all([
-      loadTemplate("/pages/partials/header.html"),
-      loadTemplate("/pages/partials/footer.html"),
+      loadTemplate("../../pages/partials/header.html"),
+      loadTemplate("../../pages/partials/footer.html"),
     ]);
 
     // Add existence checks

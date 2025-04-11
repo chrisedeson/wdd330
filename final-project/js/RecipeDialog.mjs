@@ -44,7 +44,7 @@ export class RecipeDialog {
   injectStyles() {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "../styles/RecipeDialog.css";
+    link.href = "/styles/RecipeDialog.css";
     document.head.appendChild(link);
   }
 
