@@ -14,17 +14,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   await initCommon();
 
   // Only show greeting on homepage
-  if (
+  const isHomePage =
     window.location.pathname.endsWith("/index.html") ||
-    window.location.pathname === "/"
-  ) {
-    displayGreeting(); // Only call once here
+    window.location.pathname === "/";
+
+  if (isHomePage) {
+    displayGreeting();
   }
 
-  // 2) Now that the header is in the DOM, show the greeting
-  displayGreeting();
-
-  // 3) Populate the featured (infinite scroll) section
+  // 2) Populate the featured (infinite scroll) section
   await createScrollableCards({
     selector: ".cards",
     fetcher: fetchRecipes,
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     infiniteScroll: true,
   });
 
-  // 4) Populate the popular recipes section (no infinite scroll)
+  // 3) Populate the popular recipes section (no infinite scroll)
   await createScrollableCards({
     selector: ".recipe-cards",
     fetcher: fetchPopularRecipes,
@@ -40,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     infiniteScroll: false,
   });
 
-  // 5) Wire up the left/right scroll buttons
+  // 4) Wire up the left/right scroll buttons
   const leftBtn = document.querySelector(".scroll-btn.left");
   const rightBtn = document.querySelector(".scroll-btn.right");
   const cardsContainer = document.querySelector(".cards");
@@ -54,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
   }
 
-  // 6) Add random recipe generator functionality
+  // 5) Add random recipe generator functionality
   Array.from(document.getElementsByClassName("ctn-btn")).forEach((btn) => {
     btn.addEventListener("click", async () => {
       try {
