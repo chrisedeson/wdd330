@@ -1,15 +1,22 @@
 {
-  "name": "final-project",
+  "name": "Skimmer",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+   "dev": "vite",
+   "build": "vite build",
+   "preview": "vite preview",
+   "start": "vite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["food"],
+  "author": "Christopher Edeson",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5"
-  }
+  },
+ "devDependencies": {
+   "vite": "^5.0.0"
+ }
 }
