@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skimmer</title>
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/common.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="./styles/recipe-dialog.css" />
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/common.js"></script>
+    <script type="module" src="./js/home.js"></script>
+
     <!-- Google Analytics (prod only) -->
     <script type="module">
       if (import.meta.env.PROD && import.meta.env.VITE_GA_ID) {
@@ -23,15 +32,7 @@
         gtag("config", GA_ID, { page_path: window.location.pathname });
       }
     </script>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="./styles/common.css" />
-    <link rel="stylesheet" href="./styles/index.css" />
-    <link rel="stylesheet" href="./styles/recipe-dialog.css" />
-    <!-- Scripts -->
-    <script type="module" src="./js/common.js"></script>
-    <script type="module" src="./js/home.js"></script>
-
+    
     <!-- Open Graph for Facebook -->
     <meta property="og:title" content="Skimmer" />
     <meta property="og:type" content="website" />
