@@ -90,3 +90,15 @@
     transform: rotate(360deg);
   }
 }
+
+  /* Adjust Mobile Nav bar */
+  @media (max-width: 400px) {
+    .bottom-nav.show {
+      transform: translateY(-7px);
+    }
+  
+    .bottom-nav {
+      padding-bottom: 1em;
+    }
+  
+  }
